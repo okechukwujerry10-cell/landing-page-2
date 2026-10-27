@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Okeychi Global Project — Quality Plastics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="Style.css">
+</head>
+<body>
+
+<!-- Animated background bubbles -->
+<div class="bg-bubbles">
+  <span></span><span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span><span></span>
+</div>
+
+<div class="top-bar">
+  <div class="top-links">
+    <span>Sell on Okeychi</span>
+    <span>Bulk Orders</span>
+    <span onclick="openWaPopup()">💬 Chat on WhatsApp</span>
+    <span>Track My Order</span>
+  </div>
+  <div class="top-links">
+    <span>📍 Nigeria</span>
+  </div>
+</div>
+
+<nav class="nav">
+  <div class="logo">
+    <span class="logo-name">Okeychi</span>
+    <span class="logo-sub">Global Project</span>
+  </div>
+  <div class="search-bar">
+    <input id="searchInput" placeholder="Search buckets, chairs, containers, crates..." onkeydown="if(event.key==='Enter')doSearch()">
+    <button onclick="doSearch()">SEARCH</button>
+  </div>
+  <div class="nav-icons">
+    <div class="nav-icon" onclick="showToast('👤 Sign in to your account')">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      <span>Account</span>
+    </div>
+    <div class="nav-icon" onclick="showCartToast()">
+      <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <span>Cart (<span id="cartCount">0</span>)</span>
+    </div>
+    <div class="nav-icon wa-nav-icon" onclick="openWaPopup()">
+      <!-- <svg viewBox="0 0 24 24" class="wa-svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5.232-1.316A9.953 9.953 0 0011.999 22C17.522 22 22 17.523 22 12S17.522 2 11.999 2zm0 18a7.95 7.95 0 01-4.073-1.114l-.292-.174-3.103.78.812-2.981-.19-.306A7.943 7.943 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-7.999 8h-.002z"/></svg> -->
+      <span class="wa-label">WhatsApp</span>
+    </div>
+  </div>
+</nav>
+
+<div class="cats">
+  <div class="cat active" onclick="filterCat('all',this)">All Products</div>
+  <div class="cat" onclick="filterCat('buckets',this)">🪣 Buckets & Bowls</div>
+  <div class="cat" onclick="filterCat('chairs',this)">🪑 Chairs & Tables</div>
+  <div class="cat" onclick="filterCat('containers',this)">📦 Containers & Storage</div>
+  <div class="cat" onclick="filterCat('crates',this)">🧺 Crates & Baskets</div>
+  <div class="cat" onclick="filterCat('pipes',this)">🔧 Pipes & Fittings</div>
+  <div class="cat" onclick="filterCat('tanks',this)">💧 Water Tanks</div>
+  <div class="cat" onclick="filterCat('kitchen',this)">🍽️ Kitchen Plastics</div>
+  <div class="cat" onclick="filterCat('industrial',this)">🏭 Industrial</div>
+</div>
+
+<div class="body">
+
+  <div class="banner">
+    <div>
+      <div class="banner-badge">🏭 Nigeria's Trusted Plastics Store</div>
+      <h2>Quality Plastics<br>for Every Need</h2>
+      <p>Household · Industrial · Wholesale · Retail</p>
+      <div class="banner-btns">
+        <button class="banner-btn" onclick="filterCat('all',null)">Shop Now</button>
+        <button class="banner-btn wa" onclick="openWaPopup()">
+          <!-- <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5.232-1.316A9.953 9.953 0 0011.999 22C17.522 22 22 17.523 22 12S17.522 2 11.999 2zm0 18a7.95 7.95 0 01-4.073-1.114l-.292-.174-3.103.78.812-2.981-.19-.306A7.943 7.943 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-7.999 8h-.002z"/></svg> -->
+          Chat Us on WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="trust-bar">
+    <div class="trust-item"><div class="t-icon">🚚</div><div class="t-label">Free Delivery</div><div class="t-sub">On orders above ₦50,000</div></div>
+    <div class="trust-item"><div class="t-icon">✅</div><div class="t-label">100% Authentic</div><div class="t-sub">Quality guaranteed</div></div>
+    <div class="trust-item"><div class="t-icon">🔄</div><div class="t-label">Easy Returns</div><div class="t-sub">7-day return policy</div></div>
+    <div class="trust-item"><div class="t-icon">💬</div><div class="t-label">WhatsApp Support</div><div class="t-sub">Instant reply guaranteed</div></div>
+  </div>
+  
+  <div class="promo-grid">
+    <div class="promo-card blue" onclick="filterCat('industrial',null)">
+      <div><h4>Bulk & Wholesale</h4><p>Special prices for large orders</p></div>
+      <div class="icon">🏭</div>
+    </div>
+    <div class="promo-card amber" onclick="filterCat('tanks',null)">
+      <div><h4>Water Tanks Sale</h4><p>Up to 30% off this week</p></div>
+      <div class="icon">💧</div>
+    </div>
+  </div>
+
+  <div class="cats-grid">
+    <div class="cat-card" onclick="filterCat('buckets',null)"><div class="icon">🪣</div><div class="label">Buckets</div></div>
+    <div class="cat-card" onclick="filterCat('chairs',null)"><div class="icon">🪑</div><div class="label">Chairs</div></div>
+    <div class="cat-card" onclick="filterCat('containers',null)"><div class="icon">📦</div><div class="label">Containers</div></div>
+    <div class="cat-card" onclick="filterCat('crates',null)"><div class="icon">🧺</div><div class="label">Crates</div></div>
+    <div class="cat-card" onclick="filterCat('pipes',null)"><div class="icon">🔧</div><div class="label">Pipes</div></div>
+    <div class="cat-card" onclick="filterCat('tanks',null)"><div class="icon">💧</div><div class="label">Tanks</div></div>
+    <div class="cat-card" onclick="filterCat('kitchen',null)"><div class="icon">🍽️</div><div class="label">Kitchen</div></div>
+    <div class="cat-card" onclick="filterCat('industrial',null)"><div class="icon">🏭</div><div class="label">Industrial</div></div>
+  </div>
+
+  <div class="flash">
+    <div class="flash-head">
+      <div class="flash-title">
+        <span class="bolt">⚡</span>
+        <h3>Flash Deals</h3>
+        <div class="timer">
+          <div class="timer-box" id="th">03</div><span class="timer-sep">:</span>
+          <div class="timer-box" id="tm">24</div><span class="timer-sep">:</span>
+          <div class="timer-box" id="ts">17</div>
+        </div>
+      </div>
+      <span class="see-all">See All ›</span>
+    </div>
+    <div class="products" id="flashProducts"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <h3 id="sectionTitle">All Products</h3>
+      <span class="see-all" onclick="filterCat('all',null)">View All ›</span>
+    </div>
+    <div class="products" id="mainProducts"></div>
+  </div>
+
+  <div class="contact-section">
+    <div>
+      <h3>Get in Touch with Us</h3>
+      <p>Questions about a product or need a bulk order quote? Reach us instantly on WhatsApp or give us a call — we respond fast!</p>
+      <div class="contact-btns">
+        <button class="contact-btn wa" onclick="openWaPopup()">
+          <!-- <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5.232-1.316A9.953 9.953 0 0011.999 22C17.522 22 22 17.523 22 12S17.522 2 11.999 2zm0 18a7.95 7.95 0 01-4.073-1.114l-.292-.174-3.103.78.812-2.981-.19-.306A7.943 7.943 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-7.999 8h-.002z"/></svg> -->
+          WhatsApp Us
+        </button>
+        <button class="contact-btn call" onclick="window.location.href='tel:+2348063433426'">📞 Call Us Now</button>
+      </div>
+    </div>
+    <div class="contact-info-grid">
+      <div class="contact-info-item"><div class="ci-icon">💬</div><div class="ci-text"><strong>WhatsApp (Line 1)</strong>+234 806 343 3426</div></div>
+      <div class="contact-info-item"><div class="ci-icon">💬</div><div class="ci-text"><strong>WhatsApp (Line 2)</strong>+234 815 632 8327</div></div>
+      <div class="contact-info-item"><div class="ci-icon">✉️</div><div class="ci-text"><strong>Email</strong>info@okeychi.com</div></div>
+      <div class="contact-info-item"><div class="ci-icon">⏰</div><div class="ci-text"><strong>Business Hours</strong>Mon–Sat: 8am – 6pm</div></div>
+    </div>
+  </div>
+
+</div>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div><h5>Need Help?</h5><ul><li>Help Centre</li><li>How to Order</li><li>Track My Order</li><li>Return Policy</li><li>Bulk Orders</li></ul></div>
+    <div><h5>About Us</h5><ul><li>About Okeychi</li><li>Our Story</li><li>Careers</li><li>Press</li><li>Contact Us</li></ul></div>
+    <div><h5>Sell With Us</h5><ul><li>Become a Vendor</li><li>Wholesale Portal</li><li>Distributor Program</li><li>Advertise</li><li>Partner With Us</li></ul></div>
+    <div><h5>Contact</h5><ul>
+      <li>📍 Nigeria</li>
+      <li>📞 0806 343 3426</li>
+      <li>📞 0815 632 8327</li>
+      <li onclick="openWaPopup()">💬 WhatsApp Us</li>
+      <li>Mon–Sat: 8am–6pm</li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">© 2026 Okeychi Global Project. All rights reserved. | Privacy Policy | Terms & Conditions</div>
+</footer>
+
+<!-- CART BAR -->
+<div class="cart-bar" id="cartBar" style="display:none">
+  <div class="cart-info"><strong id="cartItemsLabel">0 items</strong> in cart · Total: <strong id="cartTotal">₦0</strong></div>
+  <div class="cart-btns"> 
+    <button class="checkout-btn wa" onclick="waCheckout()">
+      <!-- <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5.232-1.316A9.953 9.953 0 0011.999 22C17.522 22 22 17.523 22 12S17.522 2 11.999 2zm0 18a7.95 7.95 0 01-4.073-1.114l-.292-.174-3.103.78.812-2.981-.19-.306A7.943 7.943 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-7.999 8h-.002z"/></svg> -->
+      Order via WhatsApp
+    </button>
+    <button class="checkout-btn" onclick="showToast('✅ Proceeding to checkout...')">Checkout</button>
+  </div>
+</div>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<div class="wa-float">
+  <div class="wa-chat-popup" id="waPopup">
+    <div class="wa-chat-head">
+      <div class="avatar">👩‍💼</div>
+      <div class="info">
+        <h4>Okeychi Global Project</h4>
+        <p>🟢 Online · Typically replies instantly</p>
+      </div>
+    </div>
+    <div class="wa-chat-body">
+      <div class="wa-bubble">
+        👋 Hello! Welcome to <strong>Okeychi Global Project</strong>.<br><br>
+        How can we help you today? Ask about products, prices, or bulk orders!
+        <div class="time">Now</div>
+      </div>
+    </div>
+    <div class="wa-chat-input">
+      <textarea id="waMsg" placeholder="Type your message...">Hi! I'm interested in your plastic products. Can you help me?</textarea>
+      <div class="wa-number-btns">
+        <button class="wa-num-btn" onclick="sendWaMsg('2348063433426')">
+          <!-- <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5.232-1.316A9.953 9.953 0 0011.999 22C17.522 22 22 17.523 22 12S17.522 2 11.999 2zm0 18a7.95 7.95 0 01-4.073-1.114l-.292-.174-3.103.78.812-2.981-.19-.306A7.943 7.943 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-7.999 8h-.002z"/></svg> -->
+          Send to Line 1 (+234 806 343 3426)
+        </button>
+        <button class="wa-num-btn secondary" onclick="sendWaMsg('2348156328327')">
+          <!-- <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5.232-1.316A9.953 9.953 0 0011.999 22C17.522 22 22 17.523 22 12S17.522 2 11.999 2zm0 18a7.95 7.95 0 01-4.073-1.114l-.292-.174-3.103.78.812-2.981-.19-.306A7.943 7.943 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-7.999 8h-.002z"/></svg> -->
+          Send to Line 2 (+234 815 632 8327)
+        </button>
+      </div>
+    </div>
+  </div>
+  <button class="wa-float-btn" onclick="toggleWaPopup()">
+    <!-- <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5.232-1.316A9.953 9.953 0 0011.999 22C17.522 22 22 17.523 22 12S17.522 2 11.999 2zm0 18a7.95 7.95 0 01-4.073-1.114l-.292-.174-3.103.78.812-2.981-.19-.306A7.943 7.943 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-7.999 8h-.002z"/></svg> -->
+    Chat with Us
+  </button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
